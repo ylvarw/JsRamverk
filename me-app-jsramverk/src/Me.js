@@ -1,25 +1,28 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 const Me = () => {
-    // const [message, setMessage] = useState('');
+  const [message, setMessage] = useState('');
+  
+//   var fetchres; 
 
-/*    useEffect(() => {
-        fetch('https://me-api.jsramverk.se')
-            .then(res => res.json())
-            .then(res => setMessage(res.description));
-    });*/
+  useEffect(() => {
+    fetch('http://localhost:1337/')
+      .then(res => res.json())
+    //   .then(res => fetchres = res)
+      .then(res => setMessage(res[0].meDescription));
+        // .then(res => console.log(res))
+  });
 
-    return (
-        <main>
-            <h1>Me</h1>
-            <p>Välkommen till min me-sida, byggd för kursen JsRamverk <br/>
-                Mitt namn är Ylva och jag läser kursen på BTH men bor i Malmö tillsammans med sambo och katter<br/>
-                Lite om mig då. <br/>
-                Jag tycker om att skriva JavaScript och css, tycker även att det är kul med bygge av appar i olika språk. <br/>
-                Som hobbies har jag matlaging, bakning och orkideér.
-            </p>
-        </main>
-    );
+//   console.log('resultat från api: ', fetchres);
+  // console.log('resultat i message: ', message);
+
+  return (
+    <main>
+      <h1>Me</h1>
+      <p>{message}</p>
+    </main>
+  );
 };
+
 
 export default Me;
